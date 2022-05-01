@@ -1,6 +1,8 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { Product } from "../pages";
 import { useCart } from "../utils/useCart";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const AddRemoveButton = ( { product }: {product:Product}) => {
     const { cartItems, addItem, updateItem, removeItem } = useCart();
@@ -34,6 +36,7 @@ const AddRemoveButton = ( { product }: {product:Product}) => {
                     <Button onClick={decreaseQuantity} variant="danger">-</Button>
                     <Button disabled variant="white">{isIncludedInCart().quantity}</Button>
                     <Button onClick={increaseQuantity} variant="success">+</Button>
+                    <Button onClick={()=>removeItem(product.id)} variant="white"><FontAwesomeIcon icon={faTimes} /></Button>
                 </ButtonGroup>
                 :
                 <Button onClick={()=>addItem(product.id)}>ADD TO CART</Button>

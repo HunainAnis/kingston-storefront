@@ -2,11 +2,14 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useState } from "react";
+import { useCart } from "../utils/useCart";
 import Cart from "./Cart";
 
 const Navbar = () => {
 
-    const [ showCart, setShowCart ] = useState(false)
+    const [ showCart, setShowCart ] = useState(false);
+    const { cartItems } = useCart();
+
     return(
         <nav className="bg-light">
             <div className="d-flex">
@@ -17,8 +20,8 @@ const Navbar = () => {
                         height={100}
                     />
                 </div>
-                <div onClick={()=>setShowCart(true)} className="bg-dark cursor-pointer text-white d-flex align-items-center px-5">
-                    <FontAwesomeIcon className="h3" icon={faCartShopping} />
+                <div onClick={()=>setShowCart(true)} className={`${cartItems.length ?"bg-success" : "bg-dark"} cursor-pointer h3 text-white d-flex align-items-center px-5`}>
+                    <FontAwesomeIcon className="me-2" icon={faCartShopping} /> {cartItems.length}
                 </div>
             </div>
             <Cart 
