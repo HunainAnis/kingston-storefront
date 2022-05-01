@@ -29,7 +29,7 @@ const Cart = ({ show, setShow }:CartComponent) => {
                                     cartItems.map((item: any) => {
                                         let currItem = getProductWithId(item.productId);
                                         return (
-                                            <div className="border rounded p-3 d-flex">
+                                            <div key={item.productId} className="border rounded p-3 d-flex">
                                                 <div className="me-3">
                                                     <Image 
                                                         src={currItem.image}
