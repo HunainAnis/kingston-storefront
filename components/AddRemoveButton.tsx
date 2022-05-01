@@ -11,6 +11,7 @@ const AddRemoveButton = ( { product }: {product:Product}) => {
         if(cartItems.map((k:any) => k.productId).includes(product.id)) {
             return cartItems.filter((k:any)=>k.productId===product.id)[0]
         }
+        else return null
     };
 
     const increaseQuantity = () => {

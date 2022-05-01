@@ -1,6 +1,6 @@
 import { Product } from "../pages";
 
-export const intialState = {
+export const intialState:state = {
     allProducts:[],
     cartItems:[],
 }

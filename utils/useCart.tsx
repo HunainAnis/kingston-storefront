@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext } from "react"
 import { CartContext } from "../components/Layout"
+import { Product } from "../pages";
 
 export const useCart = () => {
     const { state, dispatch } = useContext(CartContext);
