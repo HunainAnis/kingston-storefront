@@ -29,18 +29,20 @@ const Cart = ({ show, setShow }:CartComponent) => {
                                     cartItems.map((item: any) => {
                                         let currItem = getProductWithId(item.productId);
                                         return (
-                                            <div key={item.productId} className="border rounded p-3 d-flex">
-                                                <div className="me-3">
-                                                    <Image 
-                                                        src={currItem.image}
-                                                        width={50}
-                                                        height={60}
-                                                    />
+                                            <div key={item.productId} className="border rounded p-3 d-flex mb-2">
+                                                <div className="d-flex align-items-center me-3">
+                                                    <div>
+                                                        <Image 
+                                                            src={currItem.image}
+                                                            width={80}
+                                                            height={70}
+                                                        />
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <div className="fw-bold mb-2">{currItem.title}</div>
                                                     <AddRemoveButton product={currItem} />
-                                                    <div>${(currItem.price * item.quantity).toFixed(2)}</div>
+                                                    <div className="fw-bold h3 mt-3">${(currItem.price * item.quantity).toFixed(2)}</div>
                                                 </div>
                                             </div>
                                         )
@@ -51,8 +53,8 @@ const Cart = ({ show, setShow }:CartComponent) => {
                     </div>
                     <div className=" p-3 position-absolute bottom-0 start-0 end-0 border bg-light">
                         <div className="d-flex justify-content-between align-items-center">
-                            <div className="fw-bold">TOTAL</div>
-                            <div>${totalAmount()}</div>
+                            <div className="fw-bold">TOTAL:</div>
+                            <div className="fw-bold h3">${totalAmount()}</div>
                         </div>
                     </div>
                 </div>

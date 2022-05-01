@@ -26,7 +26,12 @@ const AddRemoveButton = ( { product }: {product:Product}) => {
             removeItem(product.id)
         }
     }
-
+    const loadingSpinner = (loading:boolean|number,text: string) => {
+        if(loading===product.id) {
+            return <Spinner animation="border" size="sm" />
+        }
+        else return text;
+    }
     console.log(cartItems);
     return (
         <div>
@@ -34,13 +39,13 @@ const AddRemoveButton = ( { product }: {product:Product}) => {
                 isIncludedInCart()
                 ?
                 <ButtonGroup>
-                    <Button onClick={decreaseQuantity} variant="danger">-</Button>
+                    <Button disabled={loading===product.id} onClick={decreaseQuantity} variant="danger">{loadingSpinner(loading, "-")}</Button>
                     <Button disabled variant="white">{isIncludedInCart().quantity}</Button>
-                    <Button onClick={increaseQuantity} variant="success">+</Button>
-                    <Button onClick={()=>removeItem(product.id)} variant="white"><FontAwesomeIcon icon={faTimes} /></Button>
+                    <Button disabled={loading===product.id} onClick={increaseQuantity} variant="success">{loadingSpinner(loading, "+")}</Button>
+                    <Button disabled={loading===product.id} onClick={()=>removeItem(product.id)} variant="white"><FontAwesomeIcon icon={faTimes} /></Button>
                 </ButtonGroup>
                 :
-                <Button disabled={loading} onClick={()=>addItem(product.id)}>{loading ? <Spinner animation="border" /> : "ADD TO CART"}</Button>
+                <Button disabled={loading===product.id} onClick={()=>addItem(product.id)}>{loadingSpinner(loading, "ADD TO CART")}</Button>
             }
         </div>
     )

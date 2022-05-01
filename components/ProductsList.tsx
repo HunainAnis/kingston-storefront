@@ -5,7 +5,7 @@ import ProductItem from "./ProductItem";
 const ProductsList = () => {
     const { products } = useCart();
     return(
-        <div className="row">
+        <div className="row mx-0 px-3">
             {
                 products.map((product: Product, index: number)=>(
                     <ProductItem key={index} product={product} />

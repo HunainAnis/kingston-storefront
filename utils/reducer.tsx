@@ -7,7 +7,7 @@ export const intialState:state = {
 }
 
 export interface state {
-    loading?:boolean;
+    loading?:boolean | number;
     allProducts: Product[];
     cartItems: {
         productId:number;
