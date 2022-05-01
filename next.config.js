@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['kingstonkosher.store'],
+    domains: ['kingstonkosher.store', 'fakestoreapi.com'],
   },
 }
 

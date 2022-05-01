@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useEffect } from 'react';
+import ProductsList from '../components/ProductsList';
 import { useCart } from '../utils/useCart';
 
 export interface Product {
@@ -25,8 +26,8 @@ const Home = ({ allProducts }: { allProducts: Product[]}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        KINGSTON STOREFRONT
+      <main className='my-5'>
+        <ProductsList />
       </main>
     </div>
   )

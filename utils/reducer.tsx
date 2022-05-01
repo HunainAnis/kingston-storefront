@@ -13,7 +13,7 @@ export interface state {
     }[]
 }
 
-export const reducer = (state:state, { type, payload }:{ type:string; payload:number}) => {
+export const reducer = (state:state, { type, payload }:{ type:string; payload:any}) => {
     switch (type) {
         case "ALL_PRODUCTS":
             return {
@@ -25,8 +25,19 @@ export const reducer = (state:state, { type, payload }:{ type:string; payload:nu
                 ...state,
                 cartItems:[...state.cartItems, { productId:payload, quantity: 1}]
             }
-            break;
-    
+        case "REMOVE_ITEM":
+            return {
+                ...state,
+                cartItems:state.cartItems.filter((k:any)=>k.productId!==payload)
+            }
+        case "UPDATE_ITEM":
+            const itemIndex = state.cartItems.findIndex((k:any)=>k.productId===payload.productId)
+            const itemsCopy = [...state.cartItems];
+            itemsCopy[itemIndex].quantity = payload.quantity;
+            return {
+                ...state,
+                cartItems:itemsCopy
+            }
         default:
             return state;
             break;
