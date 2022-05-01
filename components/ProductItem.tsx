@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { Product } from "../pages";
+import { useCart } from "../utils/useCart";
 import AddRemoveButton from "./AddRemoveButton";
 
 const ProductItem = ({ product }: { product:Product}) => {
+
     return (
         <div className="col col-12 col-md-4 col-lg-3">
             <div className="border rounded mb-3 p-3">

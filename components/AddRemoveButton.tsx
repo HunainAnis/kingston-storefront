@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, ButtonGroup } from "react-bootstrap";
+import { Button, ButtonGroup, Spinner } from "react-bootstrap";
 import { Product } from "../pages";
 import { useCart } from "../utils/useCart";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const AddRemoveButton = ( { product }: {product:Product}) => {
-    const { cartItems, addItem, updateItem, removeItem } = useCart();
+    const { cartItems, addItem, updateItem, removeItem, loading } = useCart();
 
     const isIncludedInCart = () => {
         if(cartItems.map((k:any) => k.productId).includes(product.id)) {
@@ -40,7 +40,7 @@ const AddRemoveButton = ( { product }: {product:Product}) => {
                     <Button onClick={()=>removeItem(product.id)} variant="white"><FontAwesomeIcon icon={faTimes} /></Button>
                 </ButtonGroup>
                 :
-                <Button onClick={()=>addItem(product.id)}>ADD TO CART</Button>
+                <Button disabled={loading} onClick={()=>addItem(product.id)}>{loading ? <Spinner animation="border" /> : "ADD TO CART"}</Button>
             }
         </div>
     )

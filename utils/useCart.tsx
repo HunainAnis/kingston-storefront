@@ -10,7 +10,12 @@ export const useCart = () => {
         dispatch({ type: "ALL_PRODUCTS", payload:products})
     }
 
+    const setLoading = (type: boolean) => {
+        dispatch({ type:"SET_LOADING", payload: type})
+    }
+
     const addItem = (productId: number) => {
+        setLoading(true);
         axios.post("https://fakestoreapi.com/carts", {
             userId: 5,
             date: new Date(),
@@ -18,8 +23,15 @@ export const useCart = () => {
         })
         .then((response) => {
             if(response.status===200) {
+                setLoading(false);
                 dispatch({ type: "ADD_ITEM", payload:productId})
             }
+            else {
+                setLoading(false);
+            }
+        })
+        .catch(()=>{
+            setLoading(false);
         })
 
     }
@@ -53,6 +65,7 @@ export const useCart = () => {
     }
 
     return { 
+        loading:state.loading,
         updateAllProducts,
         addItem,
         removeItem,

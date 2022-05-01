@@ -3,9 +3,11 @@ import { Product } from "../pages";
 export const intialState:state = {
     allProducts:[],
     cartItems:[],
+    loading: false
 }
 
 export interface state {
+    loading?:boolean;
     allProducts: Product[];
     cartItems: {
         productId:number;
@@ -15,6 +17,11 @@ export interface state {
 
 export const reducer = (state:state, { type, payload }:{ type:string; payload:any}) => {
     switch (type) {
+        case "SET_LOADING":
+            return {
+                ...state,
+                loading:payload
+            }
         case "ALL_PRODUCTS":
             return {
                 ...state,
